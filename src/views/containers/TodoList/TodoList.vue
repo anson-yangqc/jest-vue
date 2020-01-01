@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(item, index) in undoList" :key="index">{{ item }}</li>
     </ul>
-  </div>
+  s</div>
 </template>
 <script>
 import Header from './components/Header.vue';
