@@ -43,9 +43,13 @@ export default {
     font-size: 24px;
   }
   .header-input {
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.24),
+      0 1px 6px rgba(0, 0, 0, 0.45) inset;
+    border: none;
     float: right;
     width: 360px;
-    line-height: 24px;
+    line-height: 30px;
     margin-top: 16px;
     outline: none;
     color: #333;

@@ -17,7 +17,15 @@ export default {
   },
   components: { Header, UndoList },
   methods: {
-    delUndoItem (item) {},
+    delUndoItem (item) {
+      for (let i = this.undoListData.length - 1; i >= 0; i--) {
+        const opt = this.undoListData[i];
+        if (item === opt) {
+          this.undoListData.splice(i, 1);
+          break;
+        }
+      }
+    },
     addUndoItem (inputVal) {
       this.undoListData.push(inputVal);
     }

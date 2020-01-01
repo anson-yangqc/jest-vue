@@ -14,7 +14,7 @@ it('UndoList 参数为空 count为0，且无内容', () => {
   });
   const countElem = findDomByWrapper(wrapper, '[data-test="count"]')
   const listItems = findDomByWrapper(wrapper, '[data-test="item"]')
-  expect(countElem.at(0).text()).toEqual('0')
+  expect(countElem.at(0).text()).toContain('0')
   expect(listItems.length).toEqual(0)
 });
 
@@ -27,7 +27,7 @@ it('UndoList 参数为[1,2,3] count为3，且列表有内容，且存在删除�
   const countElem = findDomByWrapper(wrapper, '[data-test="count"]')
   const listItems = findDomByWrapper(wrapper, '[data-test="item"]')
   const deleteButton = findDomByWrapper(wrapper, '[data-test="delete-button"]')
-  expect(countElem.at(0).text()).toEqual('3')
+  expect(countElem.at(0).text()).toContain('3')
   expect(listItems.length).toEqual(3)
   expect(deleteButton.length).toEqual(3)
 });

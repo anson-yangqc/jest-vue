@@ -1,9 +1,13 @@
 <template>
   <div class="undoList">
-    <div data-test="count">{{list.length}}</div>
-    <ul>
-      <li v-for="(item,index) in list" :key="index" data-test="item">
-        <span data-test="delete-button" @click="handleDel(item)">删 除</span>
+    <div data-test="count" class="count">
+      <span class="left">正在进行</span>
+      <span class="right">{{list.length}}</span>
+    </div>
+    <ul class="undoListUl">
+      <li class="itemLi" v-for="(item,index) in list" :key="index" data-test="item">
+        <span class="del" data-test="delete-button" @click="handleDel(item)">-</span>
+        <input type="checkbox" />
         {{item}}
       </li>
     </ul>
@@ -30,9 +34,61 @@ export default {
 </script>
 <style lang="less" scoped>
 .undoList {
-  ul {
-    width: 600px;
-    margin: 0 auto;
+  width: 600px;
+  margin: 0 auto;
+  .count {
+    display: flex;
+    margin-top: 10px;
+    font-weight: bold;
+    align-items: center;
+    .left {
+      font-size: 24px;
+      flex: 1;
+    }
+    .right {
+      font-size: 24px;
+      width: 20px;
+      text-align: right;
+    }
+  }
+  .undoListUl {
+    margin-top: 20px;
+    .itemLi {
+      height: 32px;
+      line-height: 32px;
+      background: #fff;
+      position: relative;
+      margin-bottom: 10px;
+      padding: 0 40px;
+      border-radius: 3px;
+      border-left: 5px solid #629a9c;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+      input {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+      }
+      .del {
+        position: absolute;
+        top: 2px;
+        right: -4px;
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        border-radius: 14px;
+        border: 6px double #fff;
+        background: #ccc;
+        line-height: 14px;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
   }
 }
 </style>
