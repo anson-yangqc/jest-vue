@@ -8,7 +8,18 @@
       <li class="itemLi" v-for="(item,index) in list" :key="index" data-test="item">
         <span class="del" data-test="delete-button" @click="handleDel(item)">-</span>
         <input type="checkbox" />
-        {{item}}
+        <div data-test="itemCon" @click="handleItemClick(item)">
+          <span v-if="item.status === 'div'">{{item.value}}</span>
+          <span v-else>
+            <input
+              v-model="item.value"
+              autofocus
+              style="width: 89%;"
+              data-test="input"
+              @blur="handleInputBlur(item)"
+            />
+          </span>
+        </div>
       </li>
     </ul>
   </div>
@@ -28,6 +39,12 @@ export default {
   methods: {
     handleDel (item) {
       this.$emit('handleDel', item);
+    },
+    handleItemClick (item) {
+      this.$emit('statusToInput', item);
+    },
+    handleInputBlur (item) {
+      this.$emit('reset', item);
     }
   }
 };
