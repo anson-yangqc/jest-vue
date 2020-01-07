@@ -7,21 +7,32 @@
         data-test="input"
         v-model="inputValue"
         @keyup.enter="addTodoItem"
+        @input="doChangeInputValue"
         placeholder="edit todoItem"
       />
     </div>
   </div>
 </template>
 <script>
+import { mapState, mapMutations } from 'vuex';
 export default {
   name: 'HeaderVal',
   props: {},
+  computed: {
+    ...mapState({
+      _inputValue: state => state.inputValue
+    })
+  },
   data () {
     return {
-      inputValue: ''
+      inputValue: this._inputValue || ''
     };
   },
   methods: {
+    ...mapMutations(['changeInputValue']),
+    doChangeInputValue () {
+      this.changeInputValue(this.inputValue);
+    },
     addTodoItem () {
       if (this.inputValue) {
         this.$emit('add', this.inputValue);

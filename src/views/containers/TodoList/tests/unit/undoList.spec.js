@@ -54,7 +54,8 @@ it('输入框失去焦点时，向外触发 reset 事件', () => {
   const inputElement = findDomByWrapper(wrapper, '[data-test="input"]').at(0)
   inputElement.trigger('blur')
   expect(wrapper.emitted().reset).toBeTruthy()
-  // todo怎判断？？//可以在todolist再写个vm.$data判断
+  // 只可以在todolist再写个vm.$data判断
+  // 因为shallowMount只渲染了一个组件（浅渲染），不存在父子组件的场景
   // expect(wrapper.vm.parent.data.list).toEqual([{
   //   status: 'div',
   //   value: 1
