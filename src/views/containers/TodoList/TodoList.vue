@@ -10,19 +10,32 @@
   </div>
 </template>
 <script>
-import Header from './components/Header.vue';
-import UndoList from './components/UndoList.vue';
+import Header from "./components/Header.vue";
+import UndoList from "./components/UndoList.vue";
+import axios from "axios";
 export default {
-  name: 'TodoList',
+  name: "TodoList",
   props: {},
-  data () {
+  data() {
     return {
       undoListData: []
     };
   },
   components: { Header, UndoList },
+  mounted() {
+    // setTimeout(() => {
+    axios
+      .get("/getUndoList.json")
+      .then(res => {
+        this.undoListData = res.data;
+      })
+      .catch(e => {
+        debugger;
+      });
+    // }, 4000);
+  },
   methods: {
-    delUndoItem (item) {
+    delUndoItem(item) {
       for (let i = this.undoListData.length - 1; i >= 0; i--) {
         const opt = this.undoListData[i];
         if (item.value === opt.value) {
@@ -31,23 +44,23 @@ export default {
         }
       }
     },
-    addUndoItem (inputVal) {
-      this.undoListData.push({ status: 'div', value: inputVal });
+    addUndoItem(inputVal) {
+      this.undoListData.push({ status: "div", value: inputVal });
     },
-    handleStatueToInput (item) {
+    handleStatueToInput(item) {
       for (let i = this.undoListData.length - 1; i >= 0; i--) {
         const opt = this.undoListData[i];
         if (item.value === opt.value) {
-          opt.status = 'input';
+          opt.status = "input";
         } else {
-          opt.status = 'div';
+          opt.status = "div";
         }
       }
     },
-    handleStatueReset (item) {
+    handleStatueReset(item) {
       for (let i = this.undoListData.length - 1; i >= 0; i--) {
         const opt = this.undoListData[i];
-        opt.status = 'div';
+        opt.status = "div";
       }
     }
   }

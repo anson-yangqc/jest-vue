@@ -5,6 +5,8 @@ module.exports = {
   },
   extends: ["plugin:vue/essential", "@vue/standard"],
   rules: {
+    "space-before-function-paren": 0,
+    "quotes": [1, "single"],
     semi: 0,
     "vue/html-self-closing": "off",
     "vue/require-default-prop": "off",
